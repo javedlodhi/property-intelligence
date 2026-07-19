@@ -37,3 +37,7 @@ git push -u origin main
 ```
 
 The included GitHub Actions workflow validates every push. For a public deployment, import the GitHub repository into Cloudflare Pages or Vercel, then add `OPENAI_API_KEY` to that platform's environment-variable settings if you want the AI assistant enabled.
+
+## Deploy to Cloudflare Workers
+
+This project includes a `wrangler.jsonc` configuration for Cloudflare Workers. In the Cloudflare dashboard, use **Workers & Pages → Create application → Workers → Import a repository**, select this repository and the `main` branch, and use `npm run deploy` as the deployment command if Cloudflare asks for one. Add `OPENAI_API_KEY` under **Settings → Variables and Secrets** as a **Secret** after the first deployment.

@@ -44,7 +44,7 @@ export default function Home() {
   const [rows, setRows] = useState<Row[]>([]); const [fileName, setFileName] = useState("Dubai Land Transactions · Jan–Jul 2026");
   const [columnFilters, setColumnFilters] = useState<Record<string, string>>({}); const [chartType, setChartType] = useState<"bars" | "columns" | "donut">("bars");
   const [unit, setUnit] = useState<"m2" | "sqft">("m2"); const [areaMin, setAreaMin] = useState(""); const [areaMax, setAreaMax] = useState(""); const [dragging, setDragging] = useState(false); const input = useRef<HTMLInputElement>(null);
-  useEffect(() => { fetch("/dubai-land-transactions-2026.csv").then((r) => r.text()).then((text) => setRows(parseCsv(text))).catch(() => setFileName("Dataset unavailable — upload a CSV")); }, []);
+  useEffect(() => { Promise.all(["/dubai-land-transactions-2026-part-1.csv", "/dubai-land-transactions-2026-part-2.csv"].map((path) => fetch(path).then((r) => r.text()))).then(([first, second]) => setRows([...parseCsv(first), ...parseCsv(second)])).catch(() => setFileName("Dataset unavailable — upload a CSV")); }, []);
   const load = async (file?: File) => { if (!file) return; setRows(parseCsv(await file.text())); setFileName(file.name); reset(); };
   const headers = useMemo(() => Object.keys(rows[0] || {}), [rows]);
   const valuesByHeader = useMemo(() => Object.fromEntries(headers.map((header) => [header, [...new Set(rows.map((r) => r[header]).filter(Boolean))].sort()])), [rows, headers]) as Record<string, string[]>;
