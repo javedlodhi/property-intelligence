@@ -20,7 +20,7 @@ The bundled data file is in `public/dubai-land-transactions-2026.csv`. Replace i
 Copy `.env.example` to `.env.local` and set your OpenAI API key:
 
 ```bash
-OPENAI_API_KEY=your_key_here
+GEMINI_API_KEY=your_key_here
 ```
 
 Never commit `.env.local` or an API key. The app sends only an aggregate snapshot of the active filter results to the server-side AI endpoint.
@@ -36,8 +36,8 @@ git branch -M main
 git push -u origin main
 ```
 
-The included GitHub Actions workflow validates every push. For a public deployment, import the GitHub repository into Cloudflare Pages or Vercel, then add `OPENAI_API_KEY` to that platform's environment-variable settings if you want the AI assistant enabled.
+The included GitHub Actions workflow validates every push. For a public deployment, import the GitHub repository into Cloudflare Pages or Vercel, then add `GEMINI_API_KEY` to that platform's environment-variable settings if you want the AI assistant enabled.
 
 ## Deploy to Cloudflare Workers
 
-This project includes a `wrangler.jsonc` configuration for Cloudflare Workers. In the Cloudflare dashboard, use **Workers & Pages → Create application → Workers → Import a repository**, select this repository and the `main` branch, and use `npm run deploy` as the deployment command if Cloudflare asks for one. Add `OPENAI_API_KEY` under **Settings → Variables and Secrets** as a **Secret** after the first deployment.
+This project includes a `wrangler.jsonc` configuration for Cloudflare Workers. In the Cloudflare dashboard, use **Workers & Pages → Create application → Workers → Import a repository**, select this repository and the `main` branch, and use `npm run deploy` as the deployment command if Cloudflare asks for one. Add `GEMINI_API_KEY` under **Settings → Variables and Secrets** as a **Secret** after the first deployment.
