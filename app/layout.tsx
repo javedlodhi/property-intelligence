@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dubai Property Intelligence",
+  title: "NEXUS Dubai | Real Estate Intelligence",
   description: "Private analytics for Dubai land transaction exports.",
   icons: {
     icon: "/favicon.svg",
