@@ -41,7 +41,7 @@ function executiveData(rows: Row[]): ExecutiveData {
 }
 
 export default function Home() {
-  const [rows, setRows] = useState<Row[]>([]); const [fileName, setFileName] = useState("Dubai Land Transactions · Jan–Jul 2026");
+  const [rows, setRows] = useState<Row[]>([]); const [fileName, setFileName] = useState("Dubai Land Department Transactions · 2026");
   const [columnFilters, setColumnFilters] = useState<Record<string, string>>({}); const [chartType, setChartType] = useState<"bars" | "columns" | "donut">("bars");
   const [unit, setUnit] = useState<"m2" | "sqft">("m2"); const [areaMin, setAreaMin] = useState(""); const [areaMax, setAreaMax] = useState(""); const [dateStart, setDateStart] = useState(""); const [dateEnd, setDateEnd] = useState(""); const [dragging, setDragging] = useState(false); const input = useRef<HTMLInputElement>(null);
   useEffect(() => { Promise.all(["/dubai-land-transactions-2026-part-1.csv", "/dubai-land-transactions-2026-part-2.csv"].map((path) => fetch(path).then((r) => r.text()))).then(([first, second]) => setRows([...parseCsv(first), ...parseCsv(second)])).catch(() => setFileName("Dataset unavailable — upload a CSV")); }, []);
